@@ -7,7 +7,7 @@ const signToken = (id) => {
    });
 };
 
-// ===============================================| LOGIN
+// login
 exports.login = async (req, res) => {
    // Destructure login data from request body
    const { email, password } = req.body;
