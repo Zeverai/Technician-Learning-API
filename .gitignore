@@ -4,3 +4,5 @@ node_modules
 # environmenal varialbes
 .env
 
+# dev docs
+docs/authentication.md
