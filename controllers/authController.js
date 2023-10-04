@@ -49,7 +49,7 @@ exports.login = async (req, res) => {
 // logout
 exports.logout = (req, res) => {
    res.cookie("auth_token", "", {
-      expires: new Date(0), // Set token expiry to a past date, forcing invalidation & logout.
+      expires: new Date(0), // Set token expire & force invalidate
       httpOnly: true,
    });
    res.status(200).json({ message: "Logged out successfully" });
