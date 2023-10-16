@@ -9,23 +9,22 @@ const signToken = (id) => {
 
 // login
 exports.login = async (req, res) => {
-   // Destructure login data from request body
    const { email, password } = req.body;
-   console.log(`Login attempt: ${email}`);
+   console.log(`Login request for: ${email}`);
 
-   // 1. Check if email and password exist
+   // see if email and password are recieved
    if (!email || !password) {
       return res.status(400).send({ message: "Please provide email and password!" });
    }
 
-   // 2. Check if user exists and password is correct
+   // see if user exists and password is correct
    const user = await User.findOne({ email }).select("+password");
 
    if (!user || !(await user.correctPassword(password))) {
       return res.status(401).send({ message: "Incorrect email or password." });
    }
 
-   // 3. If everything is okay, send the token to the client
+   // send token to client
    const token = signToken(user._id);
    res.cookie("auth_token", token, {
       expires: new Date(
@@ -34,11 +33,11 @@ exports.login = async (req, res) => {
       httpOnly: true,
    });
 
-   // 4. Make sure password is removed from user obj before sending to client
+   // password removed from response before returning to client
    const userObject = user.toObject();
    delete userObject.password;
 
-   console.log(`Token: ${token}\nd\nuser: ${userObject.first_name}`);
+   console.log(`Logged in: ${userObject.first_name}`);
    res.status(200).send({
       status: "success",
       token,
