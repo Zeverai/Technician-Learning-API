@@ -10,6 +10,7 @@ const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const imageRoutes = require("./routes/imageRoutes");
 const examRoutes = require("./routes/examEditorRoutes");
+const flowChartRoutes = require("./routes/flowChartRoutes");
 
 // Create App
 const app = express();
@@ -40,6 +41,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/images", imageRoutes);
 app.use("/exam-editor", examRoutes);
+app.use("/api/flow-chart", flowChartRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
