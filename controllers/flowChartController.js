@@ -1,4 +1,4 @@
-const FlowChart = require("../models/FlowChart");
+const FlowChart = require("../models/flowChartModel");
 
 exports.createFlowChart = async (req, res) => {
    try {
