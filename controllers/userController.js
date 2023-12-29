@@ -1,5 +1,6 @@
 const User = require("../models/user");
 
+// retrieve list of all users
 exports.getAllUsers = async (req, res) => {
    try {
       const users = await User.find().select("-password"); // Exclude the password
@@ -9,6 +10,7 @@ exports.getAllUsers = async (req, res) => {
    }
 };
 
+// retrieve one user
 exports.getUser = async (req, res) => {
    try {
       const user = await User.findById(req.params.id).select("-password");
